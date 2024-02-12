@@ -8,7 +8,7 @@
         "sylius/sylius": "~1.9.0 || ~1.10.0 || ~1.11.0 || ~1.12.0",
         "symfony/messenger": "^4.4 || ^5.2 || ^6.0",
         "mollie/mollie-api-php": "^2.64.0",
-        "sylius/refund-plugin": "^1.0",
+        "sylius/refund-plugin": "dev-units-refunded-flow-improvements",
         "sylius/admin-order-creation-plugin":  "^0.12 || ^0.13 || v0.14",
         "ext-json": "*",
         "willdurand/js-translation-bundle": "^4.0 || ^5.0"
@@ -76,5 +76,11 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "symfony/thanks": false
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Zales0123/RefundPlugin.git"
+        }
+    ]
 }
