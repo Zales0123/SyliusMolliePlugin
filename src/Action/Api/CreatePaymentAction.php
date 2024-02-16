@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace SyliusMolliePlugin\Action\Api;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use SyliusMolliePlugin\Exceptions\MollieCheckoutUrlResponseException;
 use SyliusMolliePlugin\Logger\MollieLoggerActionInterface;
 use SyliusMolliePlugin\Parser\Response\GuzzleNegativeResponseParserInterface;
 use SyliusMolliePlugin\Repository\CustomerRepository;
@@ -115,6 +116,11 @@ final class CreatePaymentAction extends BaseApiAwareAction
         $details['payment_mollie_id'] = $payment->id;
 
         $this->loggerAction->addLog(sprintf('Create payment in mollie with id: %s', $payment->id));
+
+        $isApiRequest = true;
+        if ($isApiRequest) {
+            throw new MollieCheckoutUrlResponseException($payment->getCheckoutUrl());
+        }
 
         if (null === $payment->getCheckoutUrl()) {
             throw new HttpRedirect($details['backurl']);
